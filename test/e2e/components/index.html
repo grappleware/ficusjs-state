@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Components</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<div class="page">
+  <h1>Components</h1>
+  <mock-state class="instance"></mock-state>
+  <mock-state class="instance"></mock-state>
+  <mock-state class="instance"></mock-state>
+
+  <h3>Set state</h3>
+  <mock-set-state class="instance"></mock-set-state>
+  <mock-set-state-with-transactions class="instance"></mock-set-state-with-transactions>
+  <mock-set-state-multiple class="instance"></mock-set-state-multiple>
+  <mock-set-state-multiple-promise class="instance"></mock-set-state-multiple-promise>
+  <mock-set-state-no-callback class="instance"></mock-set-state-no-callback>
+
+  <mock-prop-state class="instance"></mock-prop-state>
+  <mock-prop-state dummy="Dumb dumb" class="instance"></mock-prop-state>
+
+  <mock-string-state class="instance"></mock-string-state>
+
+  <mock-object-state class="instance"></mock-object-state>
+</div>
+
+<script src="main.mjs" type="module"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // script for set state
+    document.addEventListener('setStateCallback', function () {
+      console.log('setStateCallback')
+    })
+    document.addEventListener('setStateMultipleCallback', function () {
+      console.log('setStateMultipleCallback')
+    })
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+{
+  "name": "@ficusjs/state",
+  "version": "1.0.0",
+  "description": "State functions for FicusJS",
+  "type": "module",
+  "main": "dist/index.mjs",
+  "module": "dist/index.mjs",
+  "types": "types/index.d.ts",
+  "scripts": {
+    "build": "run-p build:*",
+    "build:all": "rollup -i src/index.mjs -o dist/index.mjs -f es -p \"terser={mangle: { keep_fnames: true, toplevel: true, module: true }}\" -p \"filesize={}\"",
+    "build:app-state": "rollup -i src/app-state.mjs -o dist/app-state.mjs -f es -p \"terser={mangle: { keep_fnames: true, toplevel: true, module: true }}\" -p \"filesize={}\"",
+    "build:with-store": "rollup -i src/with-store.mjs -o dist/with-store.mjs -f es -p \"terser={mangle: { keep_fnames: true, toplevel: true, module: true }}\" -p \"filesize={}\"",
+    "build:with-local-state": "rollup -i src/with-local-state.mjs -o dist/with-local-state.mjs -f es -p \"terser={mangle: { keep_fnames: true, toplevel: true, module: true }}\" -p \"filesize={}\"",
+    "build:with-state-machine": "rollup -i src/with-state-machine.mjs -o dist/with-state-machine.mjs -f es -p \"terser={mangle: { keep_fnames: true, toplevel: true, module: true }}\" -p \"filesize={}\"",
+    "build:with-xstate-service": "rollup -i src/with-xstate-service.mjs -o dist/with-xstate-service.mjs -f es -p \"terser={mangle: { keep_fnames: true, toplevel: true, module: true }}\" -p \"filesize={}\"",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "dev": "run-p serve open",
+    "lint": "standard \"./src/**/*.mjs\" \"./test/**/*.mjs\"",
+    "open": "open-cli http://localhost:8080/test/e2e",
+    "test": "npm run test:unit && start-server-and-test serve:silent http://localhost:8080 cy:run",
+    "test:unit": "ava test/unit/**/*.spec.mjs",
+    "test:unit:watch": "ava test/unit/**/*.spec.mjs --watch",
+    "test:unit:coverage": "c8 --all --include=src/**/*.mjs --reporter=lcov --reporter=text-summary ava test/unit/**/*.spec.mjs --verbose",
+    "serve": "http-server",
+    "serve:silent": "http-server -s"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ficusjs/ficusjs-state.git"
+  },
+  "keywords": [
+    "ficusjs",
+    "frontend",
+    "state",
+    "stores",
+    "state-machine",
+    "statecharts",
+    "web-components"
+  ],
+  "author": "Matt Levy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ficusjs/ficusjs-state/issues"
+  },
+  "homepage": "https://github.com/ficusjs/ficusjs-state#readme",
+  "standard": {
+    "ignore": [
+      "*.ts"
+    ]
+  },
+  "devDependencies": {
+    "ava": "3.15.0",
+    "@ficusjs/core": "1.0.2",
+    "@ficusjs/renderers": "3.1.0",
+    "@rollup/plugin-alias": "3.1.2",
+    "@rollup/plugin-commonjs": "19.0.0",
+    "@rollup/plugin-node-resolve": "13.0.0",
+    "c8": "7.7.2",
+    "cypress": "7.3.0",
+    "ficusjs": "3.3.0",
+    "http-server": "0.12.3",
+    "jsdom": "16.5.3",
+    "node-sessionstorage": "1.0.0",
+    "npm-run-all": "4.1.5",
+    "open-cli": "6.0.1",
+    "rollup": "2.48.0",
+    "rollup-plugin-filesize": "9.1.1",
+    "rollup-plugin-terser": "7.0.2",
+    "sinon": "10.0.0",
+    "standard": "16.0.3",
+    "start-server-and-test": "1.12.2",
+    "xstate": "4.19.1"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs"
+    },
+    "./with-local-state": {
+      "import": "./dist/with-local-state.mjs"
+    },
+    "./app-state": {
+      "import": "./dist/app-state.mjs"
+    },
+    "./with-store": {
+      "import": "./dist/with-store.mjs"
+    },
+    "./with-state-machine": {
+      "import": "./dist/with-state-machine.mjs"
+    },
+    "./with-xstate-service": {
+      "import": "./dist/with-xstate-service.mjs"
+    }
+  }
+}
