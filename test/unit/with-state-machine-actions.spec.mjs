@@ -57,6 +57,23 @@ test('send method to person', t => {
   t.is(t.context.state.context.name, 'Matt')
 })
 
+test('send method to person setting the action name', t => {
+  t.context._processRender = function () {
+    this.updated()
+  }.bind(t.context)
+  stateMachineDefinition.states.idle.on.CLICK = {
+    target: 'loading',
+    action: 'anyActionName'
+  }
+  stateMachineDefinition.actions.anyActionName = function () {
+    this.setState({ name: 'Matt' }, () => this.send('RESOLVE'))
+  }
+  t.context.send('CLICK')
+  t.truthy(t.context.state.matches('person'))
+  t.is(t.context.state.context.name, 'Matt')
+  stateMachineDefinition.states.idle.on.CLICK = 'loading'
+})
+
 test('send method to error', t => {
   t.context._processRender = function () {
     this.updated()

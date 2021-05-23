@@ -48,10 +48,12 @@ export function withStateMachine (stateMachineDefinition, options) {
       }
       const { value } = this.state
       const nextState = this._stateMachine.transition(value, eventType) || value
-      const action = this._stateMachineDefinition.actions && this._stateMachineDefinition.actions[nextState]
-        ? () => this._stateMachineDefinition.actions[nextState].call(this, eventPayload)
+      const nextStateValue = typeof nextState === 'object' && nextState.target ? nextState.target : nextState
+      const nextStateAction = typeof nextState === 'object' && nextState.action ? nextState.action : nextState
+      const action = this._stateMachineDefinition.actions && this._stateMachineDefinition.actions[nextStateAction]
+        ? () => this._stateMachineDefinition.actions[nextStateAction].call(this, eventPayload)
         : () => {}
-      this.setState({ value: nextState }, action)
+      this.setState({ value: nextStateValue }, action)
     }
   }
 }
