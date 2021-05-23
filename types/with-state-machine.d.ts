@@ -1,6 +1,15 @@
 import { CustomElementOptions } from '@ficusjs/core'
 
-export type StateCommand = (...args: any[]) => void
+export type StateAction = (...args: any[]) => void
+
+export interface StateActionMap {
+  [key: string]: StateAction
+}
+
+export interface NextState<TS> {
+  target: TS,
+  action: keyof StateActionMap
+}
 
 export interface StateMachineDefinition<
   TC extends object,
@@ -12,13 +21,11 @@ export interface StateMachineDefinition<
   states?: {
     [K in keyof TS]: {
       on?: {
-        [E in keyof TE]?: keyof TS
+        [E in keyof TE]?: keyof TS | NextState<TS>
       }
     }
   }
-  commands?: {
-    [key: string]: StateCommand
-  }
+  actions?: StateActionMap
 }
 
 export interface WithStateMachineComponentState<
