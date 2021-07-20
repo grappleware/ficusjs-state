@@ -18,7 +18,10 @@ store.subscribe(postState)
 
 globalThis.onmessage = function (e) {
   const { actionName, payload } = e.data
-  store[actionName](payload)
-}
 
-postState()
+  if (actionName === 'start') {
+    postState()
+  } else if (store[actionName]) {
+    store[actionName](payload)
+  }
+}

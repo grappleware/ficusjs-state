@@ -63,7 +63,7 @@
     "@rollup/plugin-commonjs": "19.0.1",
     "@rollup/plugin-node-resolve": "13.0.2",
     "c8": "7.7.3",
-    "cypress": "7.7.0",
+    "cypress": "8.0.0",
     "ficusjs": "3.5.1",
     "http-server": "0.12.3",
     "jsdom": "16.6.0",

@@ -5,6 +5,7 @@ describe('Worker app state', () => {
       return false
     })
     cy.visit('app-with-worker-app-state')
+    cy.wait(500)
   })
 
   it('has an increment button', () => {
