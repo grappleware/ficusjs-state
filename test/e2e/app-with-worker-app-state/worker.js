@@ -1,0 +1,24 @@
+/* global importScripts */
+importScripts('../../../dist/worker-app-state.iife.js')
+
+const store = globalThis.ficusjs.createAppState({
+  initialState: {
+    count: 0
+  },
+  increment (payload) {
+    this.setState(state => ({ count: payload }))
+  }
+})
+
+function postState () {
+  globalThis.postMessage(Object.assign({}, store.state))
+}
+
+store.subscribe(postState)
+
+globalThis.onmessage = function (e) {
+  const { actionName, payload } = e.data
+  store[actionName](payload)
+}
+
+postState()

@@ -1,6 +1,6 @@
 import { renderer, html } from 'https://cdn.skypack.dev/@ficusjs/renderers@3/uhtml'
 import { createCustomElement as customElementCreator } from 'https://cdn.skypack.dev/@ficusjs/core'
-import { withXStateService, withStateMachine, withStore, withLocalState, createAppState, createPersist, getAppState } from '../../../src/index.mjs'
+import { withXStateService, withStateMachine, withStore, withLocalState, createAppState, createPersist, getAppState, withWorkerStore } from '../../../src/index.mjs'
 
 function createCustomElement (tagName, options) {
   customElementCreator(tagName, { ...options, renderer })
@@ -24,6 +24,7 @@ export {
   createAppState,
   withLocalState,
   getAppState,
+  withWorkerStore,
   createPersist,
   html,
   nothing

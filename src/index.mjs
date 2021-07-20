@@ -5,6 +5,7 @@ import { withLocalState } from './with-local-state.mjs'
 import { withStateMachine } from './with-state-machine.mjs'
 import { withStore } from './with-store.mjs'
 import { withXStateService } from './with-xstate-service.mjs'
+import { withWorkerStore } from './with-worker-store.mjs'
 import { Store } from './store.mjs'
 
 export {
@@ -16,5 +17,6 @@ export {
   withStateMachine,
   withStore,
   withXStateService,
+  withWorkerStore,
   Store
 }
