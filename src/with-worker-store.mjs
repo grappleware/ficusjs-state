@@ -3,10 +3,8 @@ export function withWorkerStore (worker, options) {
     ...options,
     created () {
       this.worker = worker
-
       globalThis.__ficusjs__ = globalThis.__ficusjs__ || {}
       globalThis.__ficusjs__.workers = globalThis.__ficusjs__.workers || new Map()
-
       if (!globalThis.__ficusjs__.workers.has(worker)) {
         const elements = new Set()
         elements.add(this)
@@ -17,7 +15,6 @@ export function withWorkerStore (worker, options) {
           elements.add(this)
         }
       }
-
       if (!worker.onmessage) {
         this.worker.onmessage = e => {
           const elements = globalThis.__ficusjs__.workers.get(worker)
@@ -31,6 +28,7 @@ export function withWorkerStore (worker, options) {
           }
         }
       }
+      if (options.created) options.created.call(this)
     },
     dispatch (actionName, payload) {
       this.worker.postMessage({ actionName, payload })
